@@ -33,23 +33,23 @@ module Deface
     # remove app/overrides from eager_load_path for app and all railites
     # as we require them manually depending on configuration values
     #
-    initializer "deface.tweak_eager_loading", :before => :set_load_path do |app|
+    #initializer "deface.tweak_eager_loading", :before => :set_load_path do |app|
 
       # application
-      app.config.eager_load_paths.reject! {|path| path  =~ /app\/overrides\z/ }
+     # app.config.eager_load_paths.reject! {|path| path  =~ /app\/overrides\z/ }
 
       # railites / engines / extensions
-      railties = if Rails.version >= "4.0"
-        app.railties._all
-      else
-        app.railties.all
-      end
+      #railties = if Rails.version >= "4.0"
+       # app.railties._all
+      #else
+       # app.railties.all
+      #end
 
-      railties.each do |railtie|
-        next unless railtie.respond_to? :root
-        railtie.config.eager_load_paths.reject! {|path| path  =~ /app\/overrides\z/ }
-      end
-    end
+      #railties.each do |railtie|
+       # next unless railtie.respond_to? :root
+        #railtie.config.eager_load_paths.reject! {|path| path  =~ /app\/overrides\z/ }
+      #end
+    #end
 
     # sets up deface environment and requires / loads all
     # overrides if deface is enabled.
